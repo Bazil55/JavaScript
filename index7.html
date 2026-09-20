@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Assignment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+    h1 {
+      color: #222;
+    }
+    p {
+      color: #666;
+    }
+    .hint-box {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    kbd {
+      background: #eee;
+      border-radius: 3px;
+      border: 1px solid #b4b4b4;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      font-size: 0.9em;
+      font-weight: 700;
+      padding: 2px 6px;
+    }
+    /* กล่องแสดงผลหน้าเว็บแทนการกด F12 */
+    #output {
+      background: #1e1e1e;
+      color: #39ff14;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 16px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Assignment Output</h1>
+  <div class="hint-box">
+    <p>กด <kbd>F12</kbd> หรือ <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> แล้วเลือกแท็บ <strong>Console</strong> เพื่อดูผลลัพธ์ หรือดูผลลัพธ์ที่กล่องด้านล่างนี้ได้เลย:</p>
+  </div>
+
+  <!-- จุดแสดงผล Console บนหน้าเว็บ -->
+  <pre id="output">กำลังโหลดผลลัพธ์จาก assignment.js...</pre>
+
+  <!-- ดักจับ console.log มาแสดงบนหน้าเว็บ -->
+  <script>
+    const outputBox = document.getElementById("output");
+    outputBox.textContent = ""; // ล้างข้อความเริ่มต้น
+
+    const originalLog = console.log;
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      const text = args.map(arg => typeof arg === "object" ? JSON.stringify(arg, null, 2) : String(arg)).join(" ");
+      outputBox.textContent += text + "\n";
+    };
+  </script>
+
+  <!-- เชื่อมต่อไฟล์โค้ด assignment.js ที่อยู่ในโฟลเดอร์เดียวกัน -->
+  <script src="assignment.js"></script>
+
+</body>
+</html>
